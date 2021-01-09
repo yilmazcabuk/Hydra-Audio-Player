@@ -16,6 +16,7 @@ namespace Hydra_Audio_Player
         public string Tur { get; set; }
         public string Uzunluk { get; set; }
         public PictureBox AlbumKapagi { get; set; }
+
         public DosyaBilgisi(string url)
         {
             var dosya = TagLib.File.Create(url);
@@ -36,7 +37,6 @@ namespace Hydra_Audio_Player
                 case null:
                     AlbumKapagi.Image = Properties.Resources._default;
                     break;
-
                 default:
                     var resimBilgisi = albumKapak.Data.Data;
                     mStream.Write(resimBilgisi, 0, Convert.ToInt32(resimBilgisi.Length));
