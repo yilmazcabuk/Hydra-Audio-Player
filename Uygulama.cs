@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Windows.Forms;
 using System.IO;
 
@@ -12,26 +13,25 @@ namespace Hydra_Audio_Player
         private void ListeyiTemizle_Click(object sender, EventArgs e)
             => OynatmaListesi.Rows.Clear();
 
-        private void Cikis_Click(object sender, EventArgs e)
-            => Close();
-
-        private string[] _yol;
-
         private void DosyaSec_Click(object sender, EventArgs e)
         {
             if (DosyaSecimi.ShowDialog() != DialogResult.OK) return;
-            _yol = DosyaSecimi.FileNames;
+            var yol = DosyaSecimi.FileNames;
 
-            foreach (var dosya in _yol)
+            foreach (var dosya in yol)
             {
                 var dosyaBilgisi = new DosyaBilgisi(Path.GetFullPath(dosya));
-                OynatmaListesi.Rows.Add(dosyaBilgisi.ParcaAdi, dosyaBilgisi.Sanatci, dosyaBilgisi.Uzunluk, Path.GetFullPath(dosya));
+                OynatmaListesi.Rows.Add
+                (dosyaBilgisi.ParcaAdi,
+                    dosyaBilgisi.Sanatci,
+                    dosyaBilgisi.Uzunluk,
+                    Path.GetFullPath(dosya));
             }
         }
 
         private void OynatmaListesi_SelectionChanged(object sender, EventArgs e)
         {
-            MedyaOynatici.URL = OynatmaListesi.CurrentRow?.Cells["Yol"].Value.ToString();
+            MedyaOynatici.URL = OynatmaListesi.CurrentRow?.Cells["YolColumn"].Value.ToString();
             var dosya = new DosyaBilgisi(MedyaOynatici.URL);
 
             ParcaAdi.Text = dosya.ParcaAdi;
@@ -42,6 +42,24 @@ namespace Hydra_Audio_Player
             Tur.Text = dosya.Tur;
             Uzunluk.Text = dosya.Uzunluk;
             AlbumKapagi.Image = dosya.AlbumKapagi.Image;
+        }
+
+        private void Kaydet_Click(object sender, EventArgs e)
+        {
+            if (XMLKaydet.ShowDialog() != DialogResult.OK) return;
+
+            var yol = XMLKaydet.FileName;
+            var calmaListesi = new Liste(OynatmaListesi);
+            calmaListesi.DataSet.WriteXml(yol);
+        }
+
+        private void Yukle_Click(object sender, EventArgs e)
+        {
+            if (XMLYukle.ShowDialog() != DialogResult.OK) return;
+
+            var yol = XMLYukle.FileName;
+            var veriKaynagi = new Liste(yol);
+            OynatmaListesi.DataSource = veriKaynagi;
         }
     }
 }
