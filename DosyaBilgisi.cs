@@ -27,7 +27,7 @@ namespace Hydra_Audio_Player
             Album = dosya.Tag.Album;
             YapimYili = dosya.Tag.Year.ToString();
             Tur = dosya.Tag.FirstGenre;
-            Uzunluk = dosya.Properties.Duration.ToString();
+            Uzunluk = dosya.Properties.Duration.ToString(@"mm\:ss\.ff");
             
             AlbumKapagi = new PictureBox();
             var mStream = new MemoryStream();

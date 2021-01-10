@@ -30,8 +30,12 @@ namespace Hydra_Audio_Player
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Uygulama));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.MedyaOynatici = new AxWMPLib.AxWindowsMediaPlayer();
-            this.OynatmaListesi = new System.Windows.Forms.ListBox();
             this.DosyaSec = new System.Windows.Forms.Button();
             this.ListeyiTemizle = new System.Windows.Forms.Button();
             this.Cikis = new System.Windows.Forms.Button();
@@ -51,8 +55,14 @@ namespace Hydra_Audio_Player
             this.ParcaAdi = new System.Windows.Forms.TextBox();
             this.AlbumKapagi = new System.Windows.Forms.PictureBox();
             this.DosyaSecimi = new System.Windows.Forms.OpenFileDialog();
+            this.OynatmaListesi = new System.Windows.Forms.DataGridView();
+            this.ParcaColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SanatciColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UzunlukColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Yol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.MedyaOynatici)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AlbumKapagi)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OynatmaListesi)).BeginInit();
             this.SuspendLayout();
             // 
             // MedyaOynatici
@@ -64,21 +74,12 @@ namespace Hydra_Audio_Player
             this.MedyaOynatici.Size = new System.Drawing.Size(404, 227);
             this.MedyaOynatici.TabIndex = 0;
             // 
-            // OynatmaListesi
-            // 
-            this.OynatmaListesi.FormattingEnabled = true;
-            this.OynatmaListesi.Location = new System.Drawing.Point(13, 420);
-            this.OynatmaListesi.Name = "OynatmaListesi";
-            this.OynatmaListesi.Size = new System.Drawing.Size(189, 186);
-            this.OynatmaListesi.TabIndex = 1;
-            this.OynatmaListesi.SelectedIndexChanged += new System.EventHandler(this.OynatmaListesi_SelectedIndexChanged);
-            // 
             // DosyaSec
             // 
             this.DosyaSec.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.DosyaSec.Location = new System.Drawing.Point(211, 420);
+            this.DosyaSec.Location = new System.Drawing.Point(12, 611);
             this.DosyaSec.Name = "DosyaSec";
-            this.DosyaSec.Size = new System.Drawing.Size(180, 55);
+            this.DosyaSec.Size = new System.Drawing.Size(184, 55);
             this.DosyaSec.TabIndex = 17;
             this.DosyaSec.Text = "Dosyaları Seç";
             this.DosyaSec.UseVisualStyleBackColor = true;
@@ -87,9 +88,9 @@ namespace Hydra_Audio_Player
             // ListeyiTemizle
             // 
             this.ListeyiTemizle.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.ListeyiTemizle.Location = new System.Drawing.Point(211, 485);
+            this.ListeyiTemizle.Location = new System.Drawing.Point(206, 611);
             this.ListeyiTemizle.Name = "ListeyiTemizle";
-            this.ListeyiTemizle.Size = new System.Drawing.Size(180, 55);
+            this.ListeyiTemizle.Size = new System.Drawing.Size(184, 55);
             this.ListeyiTemizle.TabIndex = 18;
             this.ListeyiTemizle.Text = "Listeyi Temizle";
             this.ListeyiTemizle.UseVisualStyleBackColor = true;
@@ -98,9 +99,9 @@ namespace Hydra_Audio_Player
             // Cikis
             // 
             this.Cikis.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.Cikis.Location = new System.Drawing.Point(211, 550);
+            this.Cikis.Location = new System.Drawing.Point(206, 670);
             this.Cikis.Name = "Cikis";
-            this.Cikis.Size = new System.Drawing.Size(180, 55);
+            this.Cikis.Size = new System.Drawing.Size(184, 55);
             this.Cikis.TabIndex = 19;
             this.Cikis.Text = "Çıkış";
             this.Cikis.UseVisualStyleBackColor = true;
@@ -241,13 +242,77 @@ namespace Hydra_Audio_Player
             this.DosyaSecimi.AddExtension = false;
             this.DosyaSecimi.Multiselect = true;
             // 
+            // OynatmaListesi
+            // 
+            this.OynatmaListesi.AllowUserToAddRows = false;
+            this.OynatmaListesi.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.OynatmaListesi.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.OynatmaListesi.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.OynatmaListesi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.OynatmaListesi.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ParcaColumn,
+            this.SanatciColumn,
+            this.UzunlukColumn,
+            this.Yol});
+            this.OynatmaListesi.Location = new System.Drawing.Point(13, 420);
+            this.OynatmaListesi.MultiSelect = false;
+            this.OynatmaListesi.Name = "OynatmaListesi";
+            this.OynatmaListesi.ReadOnly = true;
+            this.OynatmaListesi.Size = new System.Drawing.Size(378, 185);
+            this.OynatmaListesi.TabIndex = 62;
+            this.OynatmaListesi.SelectionChanged += new System.EventHandler(this.OynatmaListesi_SelectionChanged);
+            // 
+            // ParcaColumn
+            // 
+            this.ParcaColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ParcaColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.ParcaColumn.HeaderText = "Parça Adı";
+            this.ParcaColumn.Name = "ParcaColumn";
+            this.ParcaColumn.ReadOnly = true;
+            this.ParcaColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // SanatciColumn
+            // 
+            this.SanatciColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.SanatciColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            this.SanatciColumn.HeaderText = "Sanatçı";
+            this.SanatciColumn.Name = "SanatciColumn";
+            this.SanatciColumn.ReadOnly = true;
+            // 
+            // UzunlukColumn
+            // 
+            this.UzunlukColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.UzunlukColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            this.UzunlukColumn.HeaderText = "Uzunluk";
+            this.UzunlukColumn.Name = "UzunlukColumn";
+            this.UzunlukColumn.ReadOnly = true;
+            // 
+            // Yol
+            // 
+            this.Yol.HeaderText = "Yol";
+            this.Yol.Name = "Yol";
+            this.Yol.ReadOnly = true;
+            this.Yol.Visible = false;
+            // 
             // Uygulama
             // 
             this.AcceptButton = this.DosyaSec;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.Cikis;
-            this.ClientSize = new System.Drawing.Size(402, 618);
+            this.ClientSize = new System.Drawing.Size(402, 737);
+            this.Controls.Add(this.OynatmaListesi);
             this.Controls.Add(this.UzunlukLabel);
             this.Controls.Add(this.TurLabel);
             this.Controls.Add(this.AlbumLabel);
@@ -266,7 +331,6 @@ namespace Hydra_Audio_Player
             this.Controls.Add(this.Cikis);
             this.Controls.Add(this.ListeyiTemizle);
             this.Controls.Add(this.DosyaSec);
-            this.Controls.Add(this.OynatmaListesi);
             this.Controls.Add(this.MedyaOynatici);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -276,6 +340,7 @@ namespace Hydra_Audio_Player
             this.Text = "Hydra Audio Player";
             ((System.ComponentModel.ISupportInitialize)(this.MedyaOynatici)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AlbumKapagi)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OynatmaListesi)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -284,7 +349,6 @@ namespace Hydra_Audio_Player
         #endregion
 
         private AxWMPLib.AxWindowsMediaPlayer MedyaOynatici;
-        private System.Windows.Forms.ListBox OynatmaListesi;
         private System.Windows.Forms.Button DosyaSec;
         private System.Windows.Forms.Button ListeyiTemizle;
         private System.Windows.Forms.Button Cikis;
@@ -304,6 +368,11 @@ namespace Hydra_Audio_Player
         private System.Windows.Forms.TextBox ParcaAdi;
         private System.Windows.Forms.PictureBox AlbumKapagi;
         private System.Windows.Forms.OpenFileDialog DosyaSecimi;
+        private System.Windows.Forms.DataGridView OynatmaListesi;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ParcaColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SanatciColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UzunlukColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Yol;
     }
 }
 
