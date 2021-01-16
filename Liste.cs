@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Hydra_Audio_Player
@@ -7,24 +8,20 @@ namespace Hydra_Audio_Player
     {
         public DataSet DataSet;
         public DataTable DataTable;
-        public Liste(DataGridView tablo)
+        public Liste(DataGridView tablo, string yol)
         {
-            DataSet = new DataSet();
-            DataTable = new DataTable();
+            DataSet = new DataSet(Path.GetFileNameWithoutExtension(yol));
+            DataTable = new DataTable("Liste");
 
             foreach (DataGridViewColumn column in tablo.Columns)
-            {
                 DataTable.Columns.Add(column.HeaderText);
-            }
 
             foreach (DataGridViewRow row in tablo.Rows)
-            {
-                DataTable.Rows.Add
-                    (row.Cells["ParcaColumn"].Value,
+                DataTable.Rows.Add(
+                    row.Cells["ParcaColumn"].Value,
                     row.Cells["SanatciColumn"].Value,
                     row.Cells["UzunlukColumn"].Value,
                     row.Cells["YolColumn"].Value);
-            }
 
             DataSet.Tables.Add(DataTable);
         }
@@ -33,6 +30,7 @@ namespace Hydra_Audio_Player
         {
             DataSet = new DataSet();
             DataSet.ReadXml(yol);
+            DataTable = DataSet.Tables["Liste"];
         }
     }
 }

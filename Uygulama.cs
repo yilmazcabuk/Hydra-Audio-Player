@@ -2,6 +2,7 @@
 using System.Data;
 using System.Windows.Forms;
 using System.IO;
+using WMPLib;
 
 namespace Hydra_Audio_Player
 {
@@ -29,7 +30,7 @@ namespace Hydra_Audio_Player
             }
         }
 
-        private void OynatmaListesi_SelectionChanged(object sender, EventArgs e)
+        private void OynatmaListesi_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             MedyaOynatici.URL = OynatmaListesi.CurrentRow?.Cells["YolColumn"].Value.ToString();
             var dosya = new DosyaBilgisi(MedyaOynatici.URL);
@@ -42,6 +43,7 @@ namespace Hydra_Audio_Player
             Tur.Text = dosya.Tur;
             Uzunluk.Text = dosya.Uzunluk;
             AlbumKapagi.Image = dosya.AlbumKapagi.Image;
+
         }
 
         private void Kaydet_Click(object sender, EventArgs e)
@@ -49,17 +51,19 @@ namespace Hydra_Audio_Player
             if (XMLKaydet.ShowDialog() != DialogResult.OK) return;
 
             var yol = XMLKaydet.FileName;
-            var calmaListesi = new Liste(OynatmaListesi);
-            calmaListesi.DataSet.WriteXml(yol);
+            var calmaListesi = new Liste(OynatmaListesi, yol);
+            calmaListesi.DataTable.WriteXml(yol);
         }
 
         private void Yukle_Click(object sender, EventArgs e)
         {
             if (XMLYukle.ShowDialog() != DialogResult.OK) return;
+            OynatmaListesi.Rows.Clear();
 
             var yol = XMLYukle.FileName;
-            var veriKaynagi = new Liste(yol);
-            OynatmaListesi.DataSource = veriKaynagi;
+            var veri = new Liste(yol);
+
+            OynatmaListesi.DataSource = veri.DataTable;
         }
     }
 }

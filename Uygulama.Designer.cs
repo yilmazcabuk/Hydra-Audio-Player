@@ -55,12 +55,12 @@ namespace Hydra_Audio_Player
             this.AlbumKapagi = new System.Windows.Forms.PictureBox();
             this.DosyaSecimi = new System.Windows.Forms.OpenFileDialog();
             this.OynatmaListesi = new System.Windows.Forms.DataGridView();
-            this.Kaydet = new System.Windows.Forms.Button();
-            this.Yukle = new System.Windows.Forms.Button();
             this.ParcaColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SanatciColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UzunlukColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.YolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Kaydet = new System.Windows.Forms.Button();
+            this.Yukle = new System.Windows.Forms.Button();
             this.XMLKaydet = new System.Windows.Forms.SaveFileDialog();
             this.XMLYukle = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.MedyaOynatici)).BeginInit();
@@ -260,28 +260,7 @@ namespace Hydra_Audio_Player
             this.OynatmaListesi.ReadOnly = true;
             this.OynatmaListesi.Size = new System.Drawing.Size(378, 185);
             this.OynatmaListesi.TabIndex = 62;
-            this.OynatmaListesi.SelectionChanged += new System.EventHandler(this.OynatmaListesi_SelectionChanged);
-            // 
-            // Kaydet
-            // 
-            this.Kaydet.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.Kaydet.Location = new System.Drawing.Point(12, 670);
-            this.Kaydet.Name = "Kaydet";
-            this.Kaydet.Size = new System.Drawing.Size(184, 55);
-            this.Kaydet.TabIndex = 63;
-            this.Kaydet.Text = "Çalma Listesini Kaydet";
-            this.Kaydet.UseVisualStyleBackColor = true;
-            this.Kaydet.Click += new System.EventHandler(this.Kaydet_Click);
-            // 
-            // Yukle
-            // 
-            this.Yukle.Location = new System.Drawing.Point(206, 670);
-            this.Yukle.Name = "Yukle";
-            this.Yukle.Size = new System.Drawing.Size(184, 55);
-            this.Yukle.TabIndex = 64;
-            this.Yukle.Text = "Çalma Listesini Yükle";
-            this.Yukle.UseVisualStyleBackColor = true;
-            this.Yukle.Click += new System.EventHandler(this.Yukle_Click);
+            this.OynatmaListesi.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.OynatmaListesi_CellMouseDoubleClick);
             // 
             // ParcaColumn
             // 
@@ -317,6 +296,27 @@ namespace Hydra_Audio_Player
             this.YolColumn.Name = "YolColumn";
             this.YolColumn.ReadOnly = true;
             this.YolColumn.Visible = false;
+            // 
+            // Kaydet
+            // 
+            this.Kaydet.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.Kaydet.Location = new System.Drawing.Point(12, 670);
+            this.Kaydet.Name = "Kaydet";
+            this.Kaydet.Size = new System.Drawing.Size(184, 55);
+            this.Kaydet.TabIndex = 63;
+            this.Kaydet.Text = "Çalma Listesini Kaydet";
+            this.Kaydet.UseVisualStyleBackColor = true;
+            this.Kaydet.Click += new System.EventHandler(this.Kaydet_Click);
+            // 
+            // Yukle
+            // 
+            this.Yukle.Location = new System.Drawing.Point(206, 670);
+            this.Yukle.Name = "Yukle";
+            this.Yukle.Size = new System.Drawing.Size(184, 55);
+            this.Yukle.TabIndex = 64;
+            this.Yukle.Text = "Çalma Listesini Yükle";
+            this.Yukle.UseVisualStyleBackColor = true;
+            this.Yukle.Click += new System.EventHandler(this.Yukle_Click);
             // 
             // XMLKaydet
             // 
