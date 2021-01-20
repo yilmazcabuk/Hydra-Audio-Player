@@ -2,7 +2,6 @@
 using System.Data;
 using System.Windows.Forms;
 using System.IO;
-using WMPLib;
 
 namespace Hydra_Audio_Player
 {
@@ -22,10 +21,11 @@ namespace Hydra_Audio_Player
             foreach (var dosya in yol)
             {
                 var dosyaBilgisi = new DosyaBilgisi(Path.GetFullPath(dosya));
-                OynatmaListesi.Rows.Add
-                (dosyaBilgisi.ParcaAdi,
+
+                OynatmaListesi.Rows.Add(
+                    dosyaBilgisi.ParcaAdi,
                     dosyaBilgisi.Sanatci,
-                    dosyaBilgisi.Uzunluk,
+                    dosyaBilgisi.Uzunluk, 
                     Path.GetFullPath(dosya));
             }
         }
@@ -43,7 +43,6 @@ namespace Hydra_Audio_Player
             Tur.Text = dosya.Tur;
             Uzunluk.Text = dosya.Uzunluk;
             AlbumKapagi.Image = dosya.AlbumKapagi.Image;
-
         }
 
         private void Kaydet_Click(object sender, EventArgs e)
@@ -52,7 +51,7 @@ namespace Hydra_Audio_Player
 
             var yol = XMLKaydet.FileName;
             var calmaListesi = new Liste(OynatmaListesi, yol);
-            calmaListesi.DataTable.WriteXml(yol);
+            calmaListesi.DataTable.WriteXml(yol, XmlWriteMode.WriteSchema);
         }
 
         private void Yukle_Click(object sender, EventArgs e)
@@ -63,7 +62,14 @@ namespace Hydra_Audio_Player
             var yol = XMLYukle.FileName;
             var veri = new Liste(yol);
 
-            OynatmaListesi.DataSource = veri.DataTable;
+            foreach (DataRow row in veri.DataTable.Rows)
+            {
+                OynatmaListesi.Rows.Add(
+                    row["ParcaColumn"],
+                    row["SanatciColumn"],
+                    row["UzunlukColumn"],
+                    row["YolColumn"]);
+            }
         }
     }
 }
