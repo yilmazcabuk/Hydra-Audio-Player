@@ -30,11 +30,11 @@ namespace Hydra_Audio_Player
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Uygulama));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.MedyaOynatici = new AxWMPLib.AxWindowsMediaPlayer();
             this.DosyaSec = new System.Windows.Forms.Button();
             this.ListeyiTemizle = new System.Windows.Forms.Button();
@@ -55,14 +55,14 @@ namespace Hydra_Audio_Player
             this.AlbumKapagi = new System.Windows.Forms.PictureBox();
             this.DosyaSecimi = new System.Windows.Forms.OpenFileDialog();
             this.OynatmaListesi = new System.Windows.Forms.DataGridView();
-            this.Kaydet = new System.Windows.Forms.Button();
-            this.Yukle = new System.Windows.Forms.Button();
-            this.XMLKaydet = new System.Windows.Forms.SaveFileDialog();
-            this.XMLYukle = new System.Windows.Forms.OpenFileDialog();
             this.ParcaColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SanatciColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UzunlukColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.YolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Kaydet = new System.Windows.Forms.Button();
+            this.Yukle = new System.Windows.Forms.Button();
+            this.XMLKaydet = new System.Windows.Forms.SaveFileDialog();
+            this.XMLYukle = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.MedyaOynatici)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AlbumKapagi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.OynatmaListesi)).BeginInit();
@@ -238,16 +238,16 @@ namespace Hydra_Audio_Player
             // 
             this.OynatmaListesi.AllowUserToAddRows = false;
             this.OynatmaListesi.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.OynatmaListesi.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.OynatmaListesi.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.OynatmaListesi.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.OynatmaListesi.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.OynatmaListesi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.OynatmaListesi.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ParcaColumn,
@@ -261,6 +261,41 @@ namespace Hydra_Audio_Player
             this.OynatmaListesi.Size = new System.Drawing.Size(378, 185);
             this.OynatmaListesi.TabIndex = 62;
             this.OynatmaListesi.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.OynatmaListesi_CellMouseDoubleClick);
+            // 
+            // ParcaColumn
+            // 
+            this.ParcaColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ParcaColumn.DefaultCellStyle = dataGridViewCellStyle13;
+            this.ParcaColumn.HeaderText = "Parça Adı";
+            this.ParcaColumn.Name = "ParcaColumn";
+            this.ParcaColumn.ReadOnly = true;
+            this.ParcaColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // SanatciColumn
+            // 
+            this.SanatciColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.SanatciColumn.DefaultCellStyle = dataGridViewCellStyle14;
+            this.SanatciColumn.HeaderText = "Sanatçı";
+            this.SanatciColumn.Name = "SanatciColumn";
+            this.SanatciColumn.ReadOnly = true;
+            // 
+            // UzunlukColumn
+            // 
+            this.UzunlukColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.UzunlukColumn.DefaultCellStyle = dataGridViewCellStyle15;
+            this.UzunlukColumn.HeaderText = "Uzunluk";
+            this.UzunlukColumn.Name = "UzunlukColumn";
+            this.UzunlukColumn.ReadOnly = true;
+            // 
+            // YolColumn
+            // 
+            this.YolColumn.HeaderText = "Yol";
+            this.YolColumn.Name = "YolColumn";
+            this.YolColumn.ReadOnly = true;
+            this.YolColumn.Visible = false;
             // 
             // Kaydet
             // 
@@ -291,41 +326,6 @@ namespace Hydra_Audio_Player
             // XMLYukle
             // 
             this.XMLYukle.Filter = "XML Dosyaları|*.xml";
-            // 
-            // ParcaColumn
-            // 
-            this.ParcaColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ParcaColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.ParcaColumn.HeaderText = "Parça Adı";
-            this.ParcaColumn.Name = "ParcaColumn";
-            this.ParcaColumn.ReadOnly = true;
-            this.ParcaColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // SanatciColumn
-            // 
-            this.SanatciColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.SanatciColumn.DefaultCellStyle = dataGridViewCellStyle4;
-            this.SanatciColumn.HeaderText = "Sanatçı";
-            this.SanatciColumn.Name = "SanatciColumn";
-            this.SanatciColumn.ReadOnly = true;
-            // 
-            // UzunlukColumn
-            // 
-            this.UzunlukColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.UzunlukColumn.DefaultCellStyle = dataGridViewCellStyle5;
-            this.UzunlukColumn.HeaderText = "Uzunluk";
-            this.UzunlukColumn.Name = "UzunlukColumn";
-            this.UzunlukColumn.ReadOnly = true;
-            // 
-            // YolColumn
-            // 
-            this.YolColumn.HeaderText = "Yol";
-            this.YolColumn.Name = "YolColumn";
-            this.YolColumn.ReadOnly = true;
-            this.YolColumn.Visible = false;
             // 
             // Uygulama
             // 
