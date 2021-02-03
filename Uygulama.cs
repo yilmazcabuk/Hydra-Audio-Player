@@ -16,8 +16,11 @@ namespace Hydra_Audio_Player
         private void DosyaSec_Click(object sender, EventArgs e)
         {
             if (DosyaSecimi.ShowDialog() != DialogResult.OK) return;
+
+            // "DosyaSecimi" öğesiyle seçilmiş tüm dosyaları "yol" adlı diziye aktarır.
             var yol = DosyaSecimi.FileNames;
 
+            // "yol" adlı dizideki her bir dosya için "OynatmaListesi" öğesine gerekli dosya bilgilerini aktarır.
             foreach (var dosya in yol)
             {
                 var dosyaBilgisi = new DosyaBilgisi(Path.GetFullPath(dosya));
@@ -32,9 +35,12 @@ namespace Hydra_Audio_Player
 
         private void OynatmaListesi_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            // Çift tıklanan hücrenin bağlı olduğu parçanın oynatılmasını sağlar.
             MedyaOynatici.URL = OynatmaListesi.CurrentRow?.Cells["YolColumn"].Value.ToString();
-            var dosya = new DosyaBilgisi(MedyaOynatici.URL);
 
+            /* Çift tıklanan hücrenin bağlı olduğu parçanın dosya bilgisini
+            "DosyaBilgisi" sınıfında yeni bir nesne oluşturarak getirir. */
+            var dosya = new DosyaBilgisi(MedyaOynatici.URL);
             ParcaAdi.Text = dosya.ParcaAdi;
             Sanatci.Text = dosya.Sanatci;
             Yazar.Text = dosya.Yazar;
@@ -49,8 +55,13 @@ namespace Hydra_Audio_Player
         {
             if (XMLKaydet.ShowDialog() != DialogResult.OK) return;
 
+            // "XMLKaydet" öğesinde seçilmiş yolu "yol" adlı diziye aktarır.
             var yol = XMLKaydet.FileName;
+
+            // "OynatmaListesi" öğesini ve "yol" dizisini kullanarak "Liste" sınıfından yeni bir nesne oluşturur.
             var calmaListesi = new Liste(OynatmaListesi, yol);
+
+            // "Liste" sınıfında oluşturulan nesneyi XML dosyasına yazar.
             calmaListesi.DataTable.WriteXml(yol, XmlWriteMode.WriteSchema);
         }
 
@@ -59,9 +70,13 @@ namespace Hydra_Audio_Player
             if (XMLYukle.ShowDialog() != DialogResult.OK) return;
             OynatmaListesi.Rows.Clear();
 
+            // "XMLYukle" öğesinde seçilen yolu "yol" öğesine aktarır.
             var yol = XMLYukle.FileName;
+
+            // "yol" dizisinden alınan bilgiyi kullanarak "Liste" sınıfından yeni bir nesne oluşturur.
             var veri = new Liste(yol);
 
+            // Oluşturulan nesnedeki bilgileri "OynatmaListesi" öğesine aktarır.
             foreach (DataRow row in veri.DataTable.Rows)
             {
                 OynatmaListesi.Rows.Add(
