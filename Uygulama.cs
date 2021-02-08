@@ -15,21 +15,22 @@ namespace Hydra_Audio_Player
 
         private void DosyaSec_Click(object sender, EventArgs e)
         {
-            if (DosyaSecimi.ShowDialog() != DialogResult.OK) return;
-
-            // "DosyaSecimi" öğesiyle seçilmiş tüm dosyaları "yol" adlı diziye aktarır.
-            var yol = DosyaSecimi.FileNames;
-
-            // "yol" adlı dizideki her bir dosya için "OynatmaListesi" öğesine gerekli dosya bilgilerini aktarır.
-            foreach (var dosya in yol)
+            if (DosyaSecimi.ShowDialog() == DialogResult.OK)
             {
-                var dosyaBilgisi = new DosyaBilgisi(Path.GetFullPath(dosya));
+                // "DosyaSecimi" öğesiyle seçilmiş tüm dosyaları "yol" adlı diziye aktarır.
+                var yol = DosyaSecimi.FileNames;
 
-                OynatmaListesi.Rows.Add(
-                    dosyaBilgisi.ParcaAdi,
-                    dosyaBilgisi.Sanatci,
-                    dosyaBilgisi.Uzunluk, 
-                    Path.GetFullPath(dosya));
+                // "yol" adlı dizideki her bir dosya için "OynatmaListesi" öğesine gerekli dosya bilgilerini aktarır.
+                foreach (var dosya in yol)
+                {
+                    var dosyaBilgisi = new DosyaBilgisi(Path.GetFullPath(dosya));
+
+                    OynatmaListesi.Rows.Add(
+                        dosyaBilgisi.ParcaAdi,
+                        dosyaBilgisi.Sanatci,
+                        dosyaBilgisi.Uzunluk,
+                        Path.GetFullPath(dosya));
+                }
             }
         }
 
@@ -53,37 +54,40 @@ namespace Hydra_Audio_Player
 
         private void Kaydet_Click(object sender, EventArgs e)
         {
-            if (XMLKaydet.ShowDialog() != DialogResult.OK) return;
+            if (XMLKaydet.ShowDialog() == DialogResult.OK)
+            {
+                // "XMLKaydet" öğesinde seçilmiş yolu "yol" adlı diziye aktarır.
+                var yol = XMLKaydet.FileName;
 
-            // "XMLKaydet" öğesinde seçilmiş yolu "yol" adlı diziye aktarır.
-            var yol = XMLKaydet.FileName;
+                // "OynatmaListesi" öğesini ve "yol" dizisini kullanarak "Liste" sınıfından yeni bir nesne oluşturur.
+                var calmaListesi = new Liste(OynatmaListesi, yol);
 
-            // "OynatmaListesi" öğesini ve "yol" dizisini kullanarak "Liste" sınıfından yeni bir nesne oluşturur.
-            var calmaListesi = new Liste(OynatmaListesi, yol);
-
-            // "Liste" sınıfında oluşturulan nesneyi XML dosyasına yazar.
-            calmaListesi.DataTable.WriteXml(yol, XmlWriteMode.WriteSchema);
+                // "Liste" sınıfında oluşturulan nesneyi XML dosyasına yazar.
+                calmaListesi.DataTable.WriteXml(yol, XmlWriteMode.WriteSchema);
+            }
         }
 
         private void Yukle_Click(object sender, EventArgs e)
         {
-            if (XMLYukle.ShowDialog() != DialogResult.OK) return;
-            OynatmaListesi.Rows.Clear();
-
-            // "XMLYukle" öğesinde seçilen yolu "yol" öğesine aktarır.
-            var yol = XMLYukle.FileName;
-
-            // "yol" dizisinden alınan bilgiyi kullanarak "Liste" sınıfından yeni bir nesne oluşturur.
-            var veri = new Liste(yol);
-
-            // Oluşturulan nesnedeki bilgileri "OynatmaListesi" öğesine aktarır.
-            foreach (DataRow row in veri.DataTable.Rows)
+            if (XMLYukle.ShowDialog() == DialogResult.OK)
             {
-                OynatmaListesi.Rows.Add(
-                    row["ParcaColumn"],
-                    row["SanatciColumn"],
-                    row["UzunlukColumn"],
-                    row["YolColumn"]);
+                OynatmaListesi.Rows.Clear();
+
+                // "XMLYukle" öğesinde seçilen yolu "yol" öğesine aktarır.
+                var yol = XMLYukle.FileName;
+
+                // "yol" dizisinden alınan bilgiyi kullanarak "Liste" sınıfından yeni bir nesne oluşturur.
+                var veri = new Liste(yol);
+
+                // Oluşturulan nesnedeki bilgileri "OynatmaListesi" öğesine aktarır.
+                foreach (DataRow row in veri.DataTable.Rows)
+                {
+                    OynatmaListesi.Rows.Add(
+                        row["ParcaColumn"],
+                        row["SanatciColumn"],
+                        row["UzunlukColumn"],
+                        row["YolColumn"]);
+                }
             }
         }
     }

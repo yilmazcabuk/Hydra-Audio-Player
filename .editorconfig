@@ -1,0 +1,7 @@
+﻿[*.cs]
+
+# IDE0011: Add braces
+csharp_prefer_braces = when_multiline:silent
+
+# IDE0058: Expression value is never used
+csharp_style_unused_value_expression_statement_preference = unused_local_variable:silent
